@@ -22,15 +22,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
         title: TextField(),
       ),
-      body: new Center(
-      ),
+      body: ListView.builder(
+          itemBuilder: (BuildContext context, int index) =>
+              ListTile(title: Text("Test $index"),),
+          itemCount: 5),
       floatingActionButton: new FloatingActionButton(
         tooltip: 'Increment',
         child: new Icon(Icons.add),
