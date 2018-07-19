@@ -32,9 +32,12 @@ class _MyHomePageState extends State<MyHomePage> {
   final inputController = TextEditingController();
 
   final List<Entry> data = <Entry>[
-    Entry("appvinio"),
-    Entry("Apple"),
-    Entry("Google"),
+    Entry("Augmented Reality - Image Recognition with EasyAR"),
+    Entry("Say no to backend - Firebase Auth&Firestore with Flutter"),
+    Entry("Transition Animation with Hero - iOS/Flutter"),
+    Entry("Augmented Reality - Object Recognition with Vuforia"),
+    Entry("Prepare to Fight - Redux for Flutter"),
+//    Entry("Indoor Navigation Sample with Indoorway"), //we needs beacons :(
   ];
 
   void _addItem() {
