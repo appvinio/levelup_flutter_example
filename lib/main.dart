@@ -47,12 +47,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementItemValue(Entry entry) {
     setState(() {
       entry.value++;
+      data.sort((first, second) => second.value.compareTo(first.value));
     });
   }
 
   void _decrementItemValue(Entry entry) {
     setState(() {
       entry.value--;
+      data.sort((first, second) => second.value.compareTo(first.value));
     });
   }
 
