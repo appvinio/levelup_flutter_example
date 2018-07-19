@@ -21,7 +21,18 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => new _MyHomePageState();
 }
 
+class Entry {
+  Entry(this.name);
+  String name;
+}
+
 class _MyHomePageState extends State<MyHomePage> {
+  final List<Entry> data = <Entry>[
+    Entry("appvinio"),
+    Entry("Apple"),
+    Entry("Google"),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -29,9 +40,10 @@ class _MyHomePageState extends State<MyHomePage> {
         title: TextField(),
       ),
       body: ListView.builder(
-          itemBuilder: (BuildContext context, int index) =>
-              ListTile(title: Text("Test $index"),),
-          itemCount: 5),
+          itemBuilder: (BuildContext context, int index) => ListTile(
+            title: Text(data[index].name),
+          ),
+          itemCount: data.length),
       floatingActionButton: new FloatingActionButton(
         tooltip: 'Increment',
         child: new Icon(Icons.add),
