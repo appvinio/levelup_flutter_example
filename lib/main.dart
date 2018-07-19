@@ -27,17 +27,28 @@ class Entry {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final inputController = TextEditingController();
+
   final List<Entry> data = <Entry>[
     Entry("appvinio"),
     Entry("Apple"),
     Entry("Google"),
   ];
 
+  void _addItem() {
+    setState(() {
+      data.add(Entry(inputController.text));
+      inputController.clear();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: TextField(),
+        title: TextField(
+          controller: inputController,
+        ),
       ),
       body: ListView.builder(
           itemBuilder: (BuildContext context, int index) => ListTile(
@@ -45,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           itemCount: data.length),
       floatingActionButton: new FloatingActionButton(
+        onPressed: _addItem,
         tooltip: 'Increment',
         child: new Icon(Icons.add),
       ), //
