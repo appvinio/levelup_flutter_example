@@ -27,6 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
+        title: TextField(),
       ),
       body: new Center(
       ),
