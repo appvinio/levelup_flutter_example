@@ -53,17 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: ListView.builder(
-          itemBuilder: (BuildContext context, int index) => ListTile(
-              leading: Text("${data[index].value}"),
-              title: Text("${data[index].name}"),
-              trailing: ButtonBar(
-                alignment: MainAxisAlignment.spaceAround,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  GestureDetector(child: Icon(Icons.add)),
-                  GestureDetector(child: Icon(Icons.remove)),
-                ],
-              )),
+          itemBuilder: (BuildContext context, int index) =>
+              EntryItem(data[index]),
           itemCount: data.length),
       floatingActionButton: new FloatingActionButton(
         onPressed: _addItem,
@@ -71,5 +62,30 @@ class _MyHomePageState extends State<MyHomePage> {
         child: new Icon(Icons.add),
       ), //
     );
+  }
+}
+
+class EntryItem extends StatelessWidget {
+  const EntryItem(this.entry);
+
+  final Entry entry;
+
+  Widget _buildTiles(Entry entry) {
+    return ListTile(
+        title: Text(entry.name),
+        leading: Text("${entry.value}"),
+        trailing: ButtonBar(
+          alignment: MainAxisAlignment.spaceAround,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            GestureDetector(child: Icon(Icons.add)),
+            GestureDetector(child: Icon(Icons.remove)),
+          ],
+        ));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildTiles(entry);
   }
 }
