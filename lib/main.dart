@@ -22,8 +22,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class Entry {
-  Entry(this.name);
   String name;
+  int value = 0;
+  Entry(this.name);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -52,7 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView.builder(
           itemBuilder: (BuildContext context, int index) => ListTile(
-            title: Text(data[index].name),
+            leading: Text("${data[index].value}"),
+            title: Text("${data[index].name}"),
           ),
           itemCount: data.length),
       floatingActionButton: new FloatingActionButton(
