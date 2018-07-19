@@ -44,6 +44,18 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _incrementItemValue(Entry entry) {
+    setState(() {
+      entry.value++;
+    });
+  }
+
+  void _decrementItemValue(Entry entry) {
+    setState(() {
+      entry.value--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -54,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView.builder(
           itemBuilder: (BuildContext context, int index) =>
-              EntryItem(data[index]),
+              EntryItem(data[index], _incrementItemValue, _decrementItemValue),
           itemCount: data.length),
       floatingActionButton: new FloatingActionButton(
         onPressed: _addItem,
@@ -66,9 +78,11 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class EntryItem extends StatelessWidget {
-  const EntryItem(this.entry);
+  const EntryItem(this.entry, this.addItemValue, this.removeItemValue);
 
   final Entry entry;
+  final Function addItemValue;
+  final Function removeItemValue;
 
   Widget _buildTiles(Entry entry) {
     return ListTile(
@@ -78,8 +92,16 @@ class EntryItem extends StatelessWidget {
           alignment: MainAxisAlignment.spaceAround,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            GestureDetector(child: Icon(Icons.add)),
-            GestureDetector(child: Icon(Icons.remove)),
+            GestureDetector(
+                onTap: () {
+                  addItemValue(entry);
+                },
+                child: Icon(Icons.add)),
+            GestureDetector(
+                onTap: () {
+                  removeItemValue(entry);
+                },
+                child: Icon(Icons.remove)),
           ],
         ));
   }
