@@ -24,6 +24,7 @@ class MyHomePage extends StatefulWidget {
 class Entry {
   String name;
   int value = 0;
+
   Entry(this.name);
 }
 
@@ -53,9 +54,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView.builder(
           itemBuilder: (BuildContext context, int index) => ListTile(
-            leading: Text("${data[index].value}"),
-            title: Text("${data[index].name}"),
-          ),
+              leading: Text("${data[index].value}"),
+              title: Text("${data[index].name}"),
+              trailing: ButtonBar(
+                alignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  GestureDetector(child: Icon(Icons.add)),
+                  GestureDetector(child: Icon(Icons.remove)),
+                ],
+              )),
           itemCount: data.length),
       floatingActionButton: new FloatingActionButton(
         onPressed: _addItem,
